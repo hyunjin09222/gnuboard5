@@ -775,6 +775,8 @@ if (G5_USE_MOBILE && $set_device) {
     $set_device = false;
 }
 
+$is_mobile = true;
+
 $_SESSION['ss_is_mobile'] = $is_mobile;
 define('G5_IS_MOBILE', $is_mobile);
 define('G5_DEVICE_BUTTON_DISPLAY', $set_device);

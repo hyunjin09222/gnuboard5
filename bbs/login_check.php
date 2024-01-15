@@ -154,6 +154,8 @@ if(function_exists('set_cart_id')){
 
 run_event('member_login_check', $mb, $link, $is_social_login);
 
+lineup_login($mb);
+
 // 관리자로 로그인시 DATA 폴더의 쓰기 권한이 있는지 체크합니다. 쓰기 권한이 없으면 로그인을 못합니다.
 if( is_admin($mb['mb_id']) && is_dir(G5_DATA_PATH.'/tmp/') ){
     $tmp_data_file = G5_DATA_PATH.'/tmp/tmp-write-test-'.time();

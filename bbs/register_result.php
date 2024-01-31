@@ -8,6 +8,8 @@ if (isset($_SESSION['ss_mb_reg']))
 if (!$mb['mb_id'])
     goto_url(G5_URL);
 
+lineup_login($mb);
+
 $g5['title'] = '회원가입 완료';
 include_once('./_head.php');
 include_once($member_skin_path.'/register_result.skin.php');

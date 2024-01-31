@@ -10,6 +10,7 @@ add_stylesheet('<link rel="stylesheet" href="'.$member_skin_url.'/style.css">', 
 
     <p>
         <strong>비밀번호를 한번 더 입력해주세요.</strong>
+        <strong>회원 탈퇴시 팀,선수,라인업이 모두 삭제 됩니다.</strong>
         <?php if ($url == 'member_leave.php') { ?>
         비밀번호를 입력하시면 회원탈퇴가 완료됩니다.
         <?php }else{ ?>

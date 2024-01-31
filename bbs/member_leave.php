@@ -30,4 +30,9 @@ if(function_exists('social_member_link_delete')){
     social_member_link_delete($member['mb_id']);
 }
 
+member_delete($member['mb_id']);
+member_delete_lineup($member['mb_email']);
+session_unset(); // 모든 세션변수를 언레지스터 시켜줌
+session_destroy(); // 세션해제함
+
 alert(''.$member['mb_nick'].'님께서는 '. date("Y년 m월 d일") .'에 회원에서 탈퇴 하셨습니다.', $url);

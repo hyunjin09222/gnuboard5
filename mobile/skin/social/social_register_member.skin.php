@@ -14,7 +14,7 @@ add_javascript('<script src="<?php echo G5_JS_URL ?>/jquery.register_form.js"></
 if ($config['cf_cert_use'] && ($config['cf_cert_simple'] || $config['cf_cert_ipin'] || $config['cf_cert_hp']))
     add_javascript('<script src="'.G5_JS_URL.'/certify.js?v='.G5_JS_VER.'"></script>', 15);
 
-$email_msg = $is_exists_email ? '등록할 이메일이 중복되었습니다.다른 이메일을 입력해 주세요.' : ''; 
+$email_msg = $is_exists_email ? '등록할 이메일이 중복되었습니다. 이미 등록된 메일의 계정을 삭제 해 주세요' : ''; 
 ?>
 
 <!-- 회원가입약관 동의 시작 { -->
@@ -139,7 +139,7 @@ $email_msg = $is_exists_email ? '등록할 이메일이 중복되었습니다.�
                     </span>
                     <?php }  ?>
                     <input type="hidden" name="old_email" value="<?php echo $member['mb_email'] ?>">
-                    <input type="text" name="mb_email" value="<?php echo isset($user_email) ? $user_email : ''; ?>" id="reg_mb_email" required <?php echo (isset($user_email) && $user_email != '' && !$is_exists_email)? "readonly":''; ?> class="frm_input email full_input required" size="70" maxlength="100" placeholder="E-mail (필수)">
+                    <input type="text" name="mb_email" value="<?php echo isset($user_email) ? $user_email : ''; ?>" id="reg_mb_email" required <?php echo (isset($user_email) && $user_email != '' && !$is_exists_email)? "readonly":''; ?> class="frm_input email full_input required" size="70" maxlength="100" placeholder="E-mail (필수)" readonly>
                     <div class="check"><?php echo $email_msg; ?></div>
                 </li>
             </ul>

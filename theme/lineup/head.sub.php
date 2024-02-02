@@ -58,7 +58,7 @@ header("Pragma: no-cache"); // HTTP/1.0
 
         <meta property="og:title" content="<? echo $meta_title; ?>">
         <meta property="og:type" content="website">
-        <meta property="og:image" content="<? echo get_meta_image($l_id, $l_eid); ?>">
+        <meta property="og:image" content="<? echo get_meta_image($t_id, $l_id, $l_eid); ?>">
         <meta property="og:description" content="<? echo $meta_desc; ?>">
     <?php
     }

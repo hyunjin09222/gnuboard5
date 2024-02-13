@@ -47,7 +47,7 @@ header("Pragma: no-cache"); // HTTP/1.0
 
     if (isset($_GET['req']) && (($_GET['req'] == 'lineup'))) {
         $viewonly = false;
-        $mode = $type= $l_id = $l_eid = $t_id = $t_name = $opponent = $title = $location = $datetime = $pitcher = $dugout = $date = $lineup = $director = null;
+        $mode = $type= $l_id = $l_eid = $t_id = $t_name = $opponent = $title = $location = $datetime = $pitcher = $dugout = $date = $lineup = $director = $showElite = null;
         $arr_member = $member_db = [];
 
         init_lineup();

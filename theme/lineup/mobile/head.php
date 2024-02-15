@@ -21,7 +21,11 @@ include_once(G5_LIB_PATH . '/popular.lib.php');
 
     
 </header>
-
+<ins class="kakao_ad_area" style="display:none;"
+data-ad-unit = "DAN-mDrxvKx1MWRqXxit"
+data-ad-width = "320"
+data-ad-height = "50"></ins>
+<script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
 <div id="wrapper">
 
     <div id="container">

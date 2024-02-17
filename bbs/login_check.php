@@ -173,4 +173,9 @@ if( is_admin($mb['mb_id']) && is_dir(G5_DATA_PATH.'/tmp/') ){
     }
 }
 
+if (isset($_SESSION["referer"])) {
+    $link = $_SESSION["referer"];
+    unset($_SESSION["referer"]);
+}
+
 goto_url($link);

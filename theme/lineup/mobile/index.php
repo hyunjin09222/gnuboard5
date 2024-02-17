@@ -18,10 +18,8 @@ include_once(G5_THEME_MOBILE_PATH . '/head.php');
 
     switch ($req) {
         case null:
-
+            if ($is_member)
             include_once(LINEUP_PATH . "/myteam.php");
-
-            echo displayAddfit();
 
             // 이 함수가 바로 최신글을 추출하는 역할을 합니다.
             // 사용방법 : latest(스킨, 게시판아이디, 출력라인, 글자수);

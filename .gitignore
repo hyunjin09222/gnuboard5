@@ -2,6 +2,7 @@
 /.htaccess
 data/
 test/
+lineup/
 sirgle/
 test.php
 *.key

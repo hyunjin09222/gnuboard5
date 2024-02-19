@@ -75,15 +75,15 @@ header("Pragma: no-cache"); // HTTP/1.0
     ?>
 
     <!-- 라인업 추가 시작 -->
-    <link rel='stylesheet' type='text/css' href='<?php echo LINEUP_URL; ?>/style.css'>
+    <link rel='stylesheet' type='text/css' href='<?php echo LINEUP_URL; ?>/style.css<? echo getVersion();?>'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="<? echo LINEUP_URL ?>/script.js"></script>
+    <script src="<? echo LINEUP_URL ?>/script.js<? echo getVersion();?>"></script>
 
     <?php
         if (isset($_GET['req']) && ($_GET['req'] == 'lineup')) { ?>
-            <link rel="stylesheet" type="text/css" href="<? echo LINEUP_URL ?>/lineup_print.css">
-            <link rel="stylesheet" type="text/css" href="<? echo LINEUP_URL ?>/lineup_style.css">
-            <script type="text/javascript" src="<? echo LINEUP_URL ?>/lineup.js"></script>
+            <link rel="stylesheet" type="text/css" href="<? echo LINEUP_URL ?>/lineup_print.css<? echo getVersion();?>">
+            <link rel="stylesheet" type="text/css" href="<? echo LINEUP_URL ?>/lineup_style.css<? echo getVersion();?>">
+            <script type="text/javascript" src="<? echo LINEUP_URL ?>/lineup.js<? echo getVersion();?>"></script>
             <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
         <?

@@ -38,9 +38,11 @@ $is_show_next_prev = ($list_count > 4) ? 1 : 0;
                 <?php
                 //echo $list[$i]['icon_reply']." ";
                 
+                /*
                 if( $img_content ){
                     echo "<a href=\"".$wr_href."\" class=\"lt_thumb\">".run_replace('thumb_image_tag', $img_content, $thumb)."</a> ";
                 }
+                */
                 
                 echo "<a href=\"".$wr_href."\" class=\"lt_tit\">";
                 if ($list[$i]['icon_secret']) echo "<i class=\"fa fa-lock\" aria-hidden=\"true\"></i> ";

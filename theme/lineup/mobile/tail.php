@@ -15,7 +15,7 @@ if(G5_COMMUNITY_USE === false) {
 <?php echo poll('theme/basic'); // 설문조사 ?>
 <?php //if($is_admin) echo visit('theme/basic'); // 방문자수 ?>
 
-<?php echo googleAd('auto'); ?>
+<?//php echo googleAd('auto'); ?>
 
 <div id="ft">
     <div id="ft_copy">

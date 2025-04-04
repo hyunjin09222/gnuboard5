@@ -10,7 +10,7 @@ import json
 path = "./twitter.json"
 
 def download():
-    with SB(uc=True, test=True, headed=True, xvfb=True) as sb:
+    with SB(uc=True, headless=True, test=True, headed=True) as sb:
         sb.maximize_window()
         url = "https://www.twidouga.net/ko/realtime_t1.php"
         sb.open(url)

@@ -2,6 +2,8 @@ import os
 import subprocess
 import time
 import json
+import schedule
+
 
 from pathlib import Path
 
@@ -27,7 +29,7 @@ chrome = '/home/www-data/chrome/121.0.6167.184/chrome-linux64/chrome'
 def get_driver(port):
         try:
             options = webdriver.ChromeOptions()
-            options.add_argument("--headless")
+            #options.add_argument("--headless")
             #options.add_argument('--disable-gpu')
             #options.add_argument('--no-sandbox')
             #options.add_argument('--disable-dev-shm-usage')
@@ -55,29 +57,22 @@ def runChrome(port):
                 user_data_dir = f"{path}/{port}"
                 if not os.path.exists(user_data_dir):
                     os.mkdir(user_data_dir)
-                cmd = f'{chrome} --headless=new --no-startup-window  --disable-gpu --headless --start-maximized --remote-debugging-port={port} --user-data-dir={user_data_dir} --enable-chrome-browser-cloud-management &'
+                cmd = f'{chrome} --disable-gpu --start-maximized --remote-debugging-port={port} --user-data-dir={user_data_dir} --enable-chrome-browser-cloud-management &'
                 print(cmd)
                 subprocess.call(cmd, shell=True)
                 excuted = True
             time.sleep(5)
 
-def main():
-    port = 9100
-    runChrome(port)
+def readPage(port):
+    print("read Page")
     driver = get_driver(port)
     driver.get("https://www.twidouga.net/ko/realtime_t1.php")
-    driver.quit()
 
-    # 인증 대기
-    time.sleep(5)
-    driver = get_driver(port)
-    driver.get("https://www.twidouga.net/ko/realtime_t1.php")
     video_elements = driver.find_elements(By.XPATH, '//*[@id="container"]/div/a')
     img_elements = driver.find_elements(By.CSS_SELECTOR, "#container > div > a > img")
     twitter_elements = driver.find_elements(By.CSS_SELECTOR, "#container > div > div > a")
 
     json_data = []
-    print(str(len(video_elements))), str(len(img_elements)), str(len(twitter_elements))
     for i in range(len(video_elements)):
         data = {
             "video" : video_elements[i].get_attribute("href"),
@@ -101,10 +96,10 @@ def main():
             json_file.seek(0)
             json.dump(read_json_data, json_file, indent=4)
             json_file.truncate()
+
         except json.JSONDecodeError as e:
             print(e)
-            print("json file is empty")
-            print(len(json_data))
+            print("json file is empty", len(json_data))
 
             #중복 제거
             temp_json_data = []
@@ -113,9 +108,31 @@ def main():
                     temp_json_data.append(data)
                     #downloadfile(sb, data['video'].rsplit('?',1)[0])
 
-            print(len(temp_json_data))
             json.dump(temp_json_data, json_file,  indent=4)
+    driver.quit()
+    print("read done", len(video_elements))
+    return len(video_elements)
+
+def main():
+    port = 9100
+    runChrome(port)
+
+    while readPage(port) == 0:
+        print("sleep 60sec..")
+        time.sleep(60)
+
+
+def job():
+    main()
+
+# 매 시간 정각에 실행
+schedule.every().hour.at(":00").do(job)
 
 
 if __name__ == '__main__':
-    main()
+    print("스케줄러 시작됨")
+    job()  # 시작 즉시 한 번 실행 (선택)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+

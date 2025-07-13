@@ -5,11 +5,18 @@
 from seleniumbase import SB
 from pathlib import Path
 
+import schedule
 import json
+import time
 
 path = "./twitter.json"
 
+def downloadfile(sb, link):
+    print("download :", link)
+    sb.download_file(link, destination_folder='/mnt/disk0/twitter/')
+
 def download():
+    print("start")
     with SB(uc=True, headless=True, test=True, headed=True) as sb:
         sb.maximize_window()
         url = "https://www.twidouga.net/ko/realtime_t1.php"
@@ -39,6 +46,7 @@ def download():
                 for data in json_data:
                     if data not in read_json_data:
                         read_json_data.insert(0, data)
+                        #downloadfile(sb, data['video'].rsplit('?',1)[0])
                 #print(read_json_data)
                 json_file.seek(0)
                 json.dump(read_json_data, json_file, indent=4)
@@ -53,7 +61,14 @@ def download():
                 for data in json_data:
                     if data not in temp_json_data:
                         temp_json_data.append(data)
+                        #downloadfile(sb, data['video'].rsplit('?',1)[0])
 
                 print(len(temp_json_data))
                 json.dump(temp_json_data, json_file,  indent=4)
+
 download()
+#schedule.every(1).hours.at("30:00").do(download)
+schedule.every(10).minutes.do(download)
+while True:
+    schedule.run_pending()
+    time.sleep(1)
